@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     # External apps
     'django_browser_reload',
     # Local apps
+    'clients',
 ]
 
 MIDDLEWARE = [
@@ -113,7 +114,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'pt-br'
 
-TIME_ZONE = 'UTC-3'
+TIME_ZONE = 'UTC'
 
 USE_I18N = True
 

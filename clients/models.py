@@ -16,6 +16,7 @@ class ClientSession(models.Model):
     def total_time(self):
         pass
 
+
 class ClientOrders(models.Model):
     """
     This class will be used to register the orders of a given customer.
@@ -37,20 +38,18 @@ class ClientCard(models.Model):
         null=True,
         default=None
     )
+    table_number = models.IntegerField(default=None, blank=True, null=True)
+    card_is_active = models.BooleanField(default=False) # Only staff will be able to activate a card
 
     def __str__(self) -> str:
-        return str(self.id + ' - ' + self.client_name)
+        return str(self.id)
     
     def checkin(self, client_name: str) -> None:
         logging.log(f"Card {self.id} registered to {client_name}")
         self.client_name = client_name
+        self.card_is_active = True
     
     def checkout(self) -> None:
         logging.log(f"Card {self.id} checked out")
         self.client_name = None
-    
-    def card_is_registered(self) -> bool:
-        if self.client_name is None:
-            return False
-        else:
-            return True
+        self.card_is_active = False
