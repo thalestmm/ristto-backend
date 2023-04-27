@@ -27,6 +27,7 @@ class ClientOrders(models.Model):
 
 # TODO: When scanning an unregisterd card, still allow to read the menu but not make any requests
 class ClientCard(models.Model):
+    # TODO: Evaluate changing the id field to a smaller sequence of characters (for generating the QR Code)
     id = models.UUIDField(
         primary_key=True,
         default=uuid.uuid4,
@@ -51,5 +52,6 @@ class ClientCard(models.Model):
     
     def checkout(self) -> None:
         logging.log(f"Card {self.id} checked out")
-        self.client_name = None
+        self.client_name = None # TODO: Think about reusable cards, letting the clients take them to their homes
         self.card_is_active = False
+        self.table_number = None
