@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django_browser_reload',
     # Local apps
     'clients',
+    'menu',
 ]
 
 MIDDLEWARE = [
