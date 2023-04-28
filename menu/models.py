@@ -12,24 +12,20 @@ class Category(models.Model):
     class Meta:
         verbose_name = "category"
         verbose_name_plural = "categories"
-
-class Ingredient(models.Model):
-    name = models.CharField(max_length=100)
-
-    def __str__(self) -> str:
-        return self.name
+        ordering = ["name", "visible"]
 
 class Item(models.Model):
     name = models.CharField(max_length=100)
-    description = models.TextField(max_length=500, blank=True, null=True)
-    photo = models.ImageField(max_length=100, blank=True, null=True) # TODO: Allow multiple photos
-    price = models.DecimalField(max_digits=6, decimal_places=2) # TODO: Implement discounts (happy hour etc.)
+    description = models.TextField(max_length=1000, blank=True, null=True)
+    photo = models.ImageField(max_length=100, blank=True, null=True) 
+    price = models.DecimalField(max_digits=6, decimal_places=2) 
+    # TODO: Implement discounts (happy hour etc.) -> This could be another category (and be limited to a certain time of day)
     
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True)
     visible = models.BooleanField(default=True)
 
-    ingredients = models.ManyToManyField(Ingredient, null=True, blank=True, default=None) # TODO: Allow the customer to remove certain ingredients
-    # TODO: implement additional items with a specific price tag
+    # TODO: Allow the customer to remove certain ingredients (add an observations field)
+    # TODO: For plates with meat, allow them to set the desired point
 
     # Item information
     lactose_free = models.BooleanField(default=False)
@@ -39,3 +35,6 @@ class Item(models.Model):
 
     def __str__(self) -> str:
         return self.name
+
+    class Meta:
+        ordering = ["-category", "name", "visible"]
