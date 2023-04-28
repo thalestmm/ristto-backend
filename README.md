@@ -27,3 +27,8 @@ What should we implement?
 
 This app will handle all the logic related to a client's actions within the restaurant.
 
+#### `Menu`
+
+This app will be the actual MVP for this project. 
+
+The restaurant will have the option to only display the menu items via a website (which can be accessed with the QR code on each table).
