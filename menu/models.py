@@ -42,7 +42,7 @@ class Item(models.Model):
         if self.photo:
             photo_extension = "." + self.photo.name.split(".")[1]
             self.photo.name = str(self.id) + photo_extension
-            # FIXME: Delete the unused uploaded photos from the media root when the models is saved
+            # FIXME: Delete the unused uploaded photos from the media root when the models is saved -> Maybe do this in the admin panel
         super().save(*args, **kwargs)
 
 
