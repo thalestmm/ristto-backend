@@ -15,9 +15,11 @@ class Category(models.Model):
         ordering = ["name", "visible"]
 
 class Item(models.Model):
+    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100)
     description = models.TextField(max_length=1000, blank=True, null=True)
     photo = models.ImageField(max_length=100, blank=True, null=True) 
+    # TODO: Implement storing and serving the images
     price = models.DecimalField(max_digits=6, decimal_places=2) 
     # TODO: Implement discounts (happy hour etc.) -> This could be another category (and be limited to a certain time of day)
     
@@ -34,7 +36,7 @@ class Item(models.Model):
     # TODO: Maybe implement nutritional macros in the future
 
     def __str__(self) -> str:
-        return self.name
+        return str(self.id) + " - " + self.name
 
     class Meta:
         ordering = ["-category", "name", "visible"]

@@ -13,8 +13,8 @@ def make_invisible(modeladmin, request, queryset):
 
 # Model Admins
 class ItemAdmin(admin.ModelAdmin):
-    list_display = ["name", "category", "price", "visible", "gluten_free", "lactose_free", "vegan"]
-    ordering = ["-category", "-visible", "name"]
+    list_display = ["name", "id", "category", "price", "visible", "gluten_free", "lactose_free", "vegan"]
+    ordering = ["-category", "id", "-visible", "name"]
     actions = [make_visible, make_invisible]
 
 class CategoryAdmin(admin.ModelAdmin):
