@@ -35,7 +35,7 @@ class Item(models.Model):
     # ? Maybe implement nutritional macros in the future
 
     def __str__(self) -> str:
-        return str(self.id) + " - " + self.name
+        return self.name
 
     def save(self, *args, **kwargs):
         # Save the uploaded photo with a standardized filename
