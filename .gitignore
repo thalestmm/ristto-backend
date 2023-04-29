@@ -1,3 +1,4 @@
 .env
 *.cnf
-uploads/
+uploads/ 
+# TODO: Remove this for production ↑
