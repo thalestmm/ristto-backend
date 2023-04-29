@@ -27,6 +27,7 @@ urlpatterns = [
     path("__reload__/", include("django_browser_reload.urls")),
 
     # Local apps
+    path('menu/', include('menu.urls')),
 ]
 
 # Serve media files in development server
