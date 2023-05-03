@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound
 
 from .models import *
+from .serializers import *
+from rest_framework import viewsets, permissions
 
 # Create your views here.
 
@@ -18,3 +20,11 @@ def get_items_by_category(request, category_id):
     items = Item.objects.filter(category=category, visible=True)
 
     return HttpResponse(items)
+
+# API endpoints
+
+class ItemViewSet(viewsets.ModelViewSet):
+    queryset = Item.objects.all()
+    serializer_class = ItemSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
