@@ -24,6 +24,7 @@ from rest_framework import routers
 from menu import views
 router = routers.DefaultRouter()
 router.register(r'items', views.ItemViewSet, 'items')
+router.register(r'categories', views.CategoryViewSet, 'categories')
 
 urlpatterns = [
     path('admin/', admin.site.urls),

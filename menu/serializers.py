@@ -8,12 +8,15 @@ class ItemSerializer(serializers.ModelSerializer):
                   'category', 'visible', 'lactose_free', 'gluten_free', 'vegan']
         
 
-class CategorySerializer(serializers.HyperlinkedModelSerializer):
+class CategorySerializer(serializers.ModelSerializer):
+    items = serializers.PrimaryKeyRelatedField(
+        many=True,
+        read_only=True,
+    ) 
+    # FIXME: Show only visible items
+    # TODO: Send item information on request
+    # ! ↑ For this to work the model must have a 'related_name' attribute on the ForeignKey field
+
     class Meta:
         model = Category
-        fields = ['name', 'description', 'visible']
-
-
-class MenuSerializer(serializers.HyperlinkedModelSerializer):
-    # TODO: Implement a different serializer that displays each item inside its parent category
-    pass
+        fields = ['name', 'description', 'visible', 'items']

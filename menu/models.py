@@ -22,7 +22,7 @@ class Item(models.Model):
     price = models.DecimalField(max_digits=6, decimal_places=2) 
     # TODO: Implement discounts (happy hour etc.) -> This could be another category (and be limited to a certain time of day)
     
-    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True)
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True, related_name='items')
     visible = models.BooleanField(default=True)
 
     # TODO: Allow the customer to remove certain ingredients -> add an observations field
