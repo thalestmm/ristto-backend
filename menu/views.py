@@ -24,7 +24,11 @@ def get_items_by_category(request, category_id):
 # API endpoints
 
 class ItemViewSet(viewsets.ModelViewSet):
-    queryset = Item.objects.all()
     serializer_class = ItemSerializer
+    queryset = Item.objects.all()
     permission_classes = [permissions.IsAuthenticated]
+
+
+class MenuViewSet(viewsets.ModelViewSet):
+    pass
 

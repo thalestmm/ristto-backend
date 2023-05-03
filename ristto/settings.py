@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # External apps
     'django_browser_reload',
+    'rest_framework',
     # Local apps
     'clients',
     'menu',
