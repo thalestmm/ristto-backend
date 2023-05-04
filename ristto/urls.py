@@ -22,9 +22,10 @@ from django.conf.urls.static import static
 
 from rest_framework import routers
 from menu import views
+
 router = routers.DefaultRouter()
 router.register(r'items', views.ItemViewSet, 'items')
-# router.register(r'categories', views.CategoryList.as_view,'categories') # * Only viewsets can be registered to a router
+# * Only viewsets can be registered to a router
 
 urlpatterns = [
     path('admin/', admin.site.urls),

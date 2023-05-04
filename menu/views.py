@@ -1,9 +1,8 @@
-from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound
 
 from .models import *
 from .serializers import *
-from rest_framework import viewsets, permissions
+from rest_framework import viewsets, permissions, generics
 
 # Create your views here.
 
@@ -28,7 +27,6 @@ class ItemViewSet(viewsets.ModelViewSet):
     queryset = Item.objects.all()
     permission_classes = [permissions.IsAuthenticated]
  
-from rest_framework import generics
 
 class CategoryList(generics.ListAPIView):
     serializer_class = CategorySerializer

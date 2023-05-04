@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'ristto.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-
+# * Basic MySQL DB Settings
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
