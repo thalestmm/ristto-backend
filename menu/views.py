@@ -27,17 +27,7 @@ class ItemViewSet(viewsets.ModelViewSet):
     serializer_class = ItemSerializer
     queryset = Item.objects.all()
     permission_classes = [permissions.IsAuthenticated]
-
-class CategoryViewSet(viewsets.ModelViewSet):
-    serializer_class = CategorySerializer
-    queryset = Category.objects.all()
-    permission_classes = [permissions.IsAuthenticated]
-    
-class MenuViewSet(viewsets.ModelViewSet):
-    """Complete menu visualization"""
-    # TODO: Implement
-    pass
-
+ 
 from rest_framework import generics
 
 class CategoryList(generics.ListAPIView):

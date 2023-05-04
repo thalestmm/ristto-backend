@@ -24,7 +24,7 @@ from rest_framework import routers
 from menu import views
 router = routers.DefaultRouter()
 router.register(r'items', views.ItemViewSet, 'items')
-# router.register(r'categories', views.CategoryList, 'categories')
+# router.register(r'categories', views.CategoryList.as_view,'categories') # * Only viewsets can be registered to a router
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -38,7 +38,7 @@ urlpatterns = [
     # REST Framework
     # path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('api/', include(router.urls)),
-    path('categories', views.CategoryList.as_view(), name='categories'),
+    path('api/menu', views.CategoryList.as_view(), name='menu'),
 ]
 
 # Serve media files in development server
