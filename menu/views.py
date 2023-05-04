@@ -38,3 +38,16 @@ class MenuViewSet(viewsets.ModelViewSet):
     # TODO: Implement
     pass
 
+from rest_framework import generics
+
+class CategoryList(generics.ListAPIView):
+    serializer_class = CategorySerializer
+
+    def get_queryset(self):
+        queryset = Category.objects.all()
+        return queryset
+
+    def get_serializer_context(self):
+        context = super().get_serializer_context()
+        context['include_items'] = True
+        return context
