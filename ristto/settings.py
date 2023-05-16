@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-+j24h@!6xa+$j&25k8tcpls#b5g$mj9wbc^nkj=3@k0ai#24)^
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']  # TODO: Change this for production
 
 
 # Application definition
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     # External apps
     'django_browser_reload',
     'rest_framework',
+    'corsheaders',
     # Local apps
     'clients',
     'menu',
@@ -55,6 +56,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # External apps
     'django_browser_reload.middleware.BrowserReloadMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'ristto.urls'
@@ -137,3 +139,5 @@ MEDIA_ROOT = BASE_DIR / 'uploads'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CORS_ALLOW_ALL_ORIGINS = True # TODO: Fix this for production
