@@ -5,9 +5,15 @@ class Category(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(max_length=500, blank=True, null=True)
     visible = models.BooleanField(default=True)
+    section_name = models.CharField(max_length=50, null=True, blank=True)
 
     def __str__(self) -> str:
         return self.name
+    
+    def save(self, *args, **kwargs):
+        if not self.section_name:
+            self.section_name = self.name.lower().replace(" ", "-")
+        super().save(*args, **kwargs)
 
     class Meta:
         verbose_name = "category"
@@ -33,6 +39,9 @@ class Item(models.Model):
     gluten_free = models.BooleanField(default=False)
     vegan = models.BooleanField(default=False)
     # ? Maybe implement nutritional macros in the future
+
+    # Use this speacilly for wines, but any plate might have this
+    origin_country_code = models.CharField(max_length=2, null=True, blank=True)
 
     def __str__(self) -> str:
         return self.name

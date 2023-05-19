@@ -9,6 +9,10 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 from pathlib import Path
 
@@ -26,6 +30,8 @@ SECRET_KEY = 'django-insecure-+j24h@!6xa+$j&25k8tcpls#b5g$mj9wbc^nkj=3@k0ai#24)^
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']  # TODO: Change this for production
+
+CSRF_TRUSTED_ORIGINS = ['https://api.ristto.app']  # TODO: Adjust this for production
 
 
 # Application definition
@@ -83,7 +89,7 @@ WSGI_APPLICATION = 'ristto.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-# * Basic MySQL DB Settings
+# * Local MySQL DB Settings
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
@@ -92,6 +98,19 @@ DATABASES = {
         },
     }
 }
+
+# * PlanetScale DB Settings
+# DATABASES = {
+#   'default': {
+#     'ENGINE': 'django.db.backends.mysql',
+#     'NAME': os.environ.get('DB_NAME'),
+#     'HOST': os.environ.get('DB_HOST'),
+#     'PORT': os.environ.get('DB_PORT'),
+#     'USER': os.environ.get('DB_USER'),
+#     'PASSWORD': os.environ.get('DB_PASSWORD'),
+#     'OPTIONS': {'ssl': {'ca': os.environ.get('MYSQL_ATTR_SSL_CA')}}
+#   }
+# }
 
 
 # Password validation
