@@ -18,11 +18,17 @@ class ItemAdmin(admin.ModelAdmin):
     actions = [make_visible, make_invisible]
 
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ["name", "visible"]
+    list_display = ["name", "menu", "visible"]
     ordering = ["name", "visible"]
     actions = [make_visible, make_invisible]
 
+class MenuAdmin(admin.ModelAdmin):
+    list_display = ["name", "restaurant", "active"]
 
 # Register your models here.
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Item, ItemAdmin)
+
+admin.site.register(Menu, MenuAdmin)
+admin.site.register(Restaurant)
+# TODO: Implement these 2 admins

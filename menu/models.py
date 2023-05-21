@@ -1,11 +1,39 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
+def get_default_user():
+    return User.objects.get(username='dev')
+
+class Restaurant(models.Model):
+    name = models.CharField(max_length=100)
+    address = models.CharField(max_length=200, blank=True, null=True)
+
+    owner_name = models.CharField(max_length=100)
+    owner_email = models.EmailField(max_length=200)
+    owner_telephone = models.CharField(max_length=20)
+
+    user_admin = models.ForeignKey(User, default=get_default_user, on_delete=models.SET_DEFAULT)
+
+    def __str__(self) -> str:
+        return self.name
+
+class Menu(models.Model):
+    name = models.CharField(max_length=100)
+    active = models.BooleanField(default=True)
+
+    restaurant = models.ForeignKey(Restaurant, on_delete=models.SET_NULL, null=True, blank=True)
+
+    def __str__(self) -> str:
+        return self.name
+
 class Category(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(max_length=500, blank=True, null=True)
     visible = models.BooleanField(default=True)
     section_name = models.CharField(max_length=50, null=True, blank=True)
+
+    menu = models.ForeignKey(Menu, blank=True, null=True, on_delete=models.SET_NULL)
 
     def __str__(self) -> str:
         return self.name
