@@ -13,7 +13,7 @@ def make_invisible(modeladmin, request, queryset):
 
 # Model Admins
 class ItemAdmin(admin.ModelAdmin):
-    list_display = ["name", "id", "category", "price", "visible", "gluten_free", "lactose_free", "vegan"]
+    list_display = ["name", "id", "category", "price", "visible"]
     ordering = ["-category", "id", "-visible", "name"]
     actions = [make_visible, make_invisible]
 
@@ -25,10 +25,13 @@ class CategoryAdmin(admin.ModelAdmin):
 class MenuAdmin(admin.ModelAdmin):
     list_display = ["name", "restaurant", "active"]
 
+class RestaurantAdmin(admin.ModelAdmin):
+    list_display = ["name", "owner_name", "user_admin"]
+
 # Register your models here.
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Item, ItemAdmin)
 
 admin.site.register(Menu, MenuAdmin)
-admin.site.register(Restaurant)
+admin.site.register(Restaurant, RestaurantAdmin)
 # TODO: Implement these 2 admins

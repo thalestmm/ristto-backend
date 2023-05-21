@@ -3,6 +3,9 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 def get_default_user():
+    """
+    Returns the dev user as a default for creating a new Model instace
+    """
     return User.objects.get(username='dev')
 
 class Restaurant(models.Model):
